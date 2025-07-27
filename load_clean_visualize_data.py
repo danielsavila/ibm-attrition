@@ -36,21 +36,19 @@ df = df[["age",
          "hourlyrate",
          "jobsatisfaction",
          "maritalstatus",
-         "overtime",
          "performancerating",
          "relationshipsatisfaction",
          "totalworkingyears",
          "stockoptionlevel",
          "trainingtimeslastyear",
          "worklifebalance",
-         "yearsatcompany",
          "yearsincurrentrole",
          "yearssincelastpromotion",
          "yearswithcurrmanager"]]
 
 df["attrition"] = np.where(df["attrition"] == "Yes", 1, 0)
 df["gender"] = np.where(df["gender"] == "Male", 1, 0)
-df = pd.get_dummies(df, columns = ["maritalstatus", "department", "educationfield", "overtime"], dtype = int)
+df = pd.get_dummies(df, columns = ["maritalstatus", "department", "educationfield"], dtype = int)
 
 # sns.pairplot(df)
 
@@ -59,7 +57,7 @@ df = pd.get_dummies(df, columns = ["maritalstatus", "department", "educationfiel
 # age + yearswithcompany
 # yearswithcompany + totalworkingyears
 # therefore dropping yearswithcompany and totalworkingyears, allowing age to be a proxy for both
-df = df.drop(columns = ["totalworkingyears", "yearsatcompany"])
+df = df.drop(columns = ["totalworkingyears"])
 
 #checking for class imbalance
 df["attrition"].value_counts(normalize = True) #lots of imbalance, so will use class_weight='balanced' in logistic regression

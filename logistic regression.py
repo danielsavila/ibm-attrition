@@ -5,9 +5,7 @@ from load_clean_visualize_data import df
 import seaborn as sns
 import numpy as np
 import pandas as pd
-
-
-df.head()
+import matplotlib.pyplot as plt 
 
 X = df.drop(columns=["attrition"])
 y = df["attrition"] 
@@ -22,8 +20,8 @@ y_train_pred_proba = log_reg.predict_proba(X_train)[:, 1]
 conf_matrix = confusion_matrix(y_train, y_train_pred)
 ax = sns.heatmap(conf_matrix, annot = True, fmt = "d", cmap = "Blues")
 ax.set(xlabel = "Predicted", ylabel = "Label")
-print(classification_report(y_test, y_train_pred))
-accuracy_score(y_test, y_train_pred)
+print(classification_report(y_train, y_train_pred))
+accuracy_score(y_train, y_train_pred)
 
 '''
 tuning this model depends on what we are trying to optimize.
@@ -37,6 +35,7 @@ both of which would have an impact on the "optimal" threshold for this model.
 fpr, tpr, thresholds = roc_curve(y_train, y_train_pred_proba)
 roc_display = RocCurveDisplay(fpr=fpr, tpr=tpr).plot()
 roc_display.ax_.set_title("ROC Curve")
+plt.show()
 
 # finding the optimal threshold
 thresholds_df = pd.DataFrame({"fpr": fpr, "tpr": tpr, "thresholds": thresholds})
@@ -49,3 +48,15 @@ conf_matrix_optimal = confusion_matrix(y_train, y_train_pred_optimal)
 ax_optimal = sns.heatmap(conf_matrix_optimal, annot=True, fmt="d", cmap="Blues")
 ax_optimal.set(xlabel="Predicted", ylabel="Label")
 print(classification_report(y_train, y_train_pred_optimal))
+
+# now looking at variable importance, i.e. the coefficients of the logistic regression model
+importance_df = pd.DataFrame({
+    "feature": X.columns,
+    "coefficient": log_reg.coef_[0]
+}).sort_values("coefficient", ascending=False)
+importance_df["coefficient"] = round(np.exp(importance_df["coefficient"]) - 1, 2) * 100  # exponentiating to get odds ratios
+importance_df = importance_df.rename(columns={"coefficient": "%_change_odds"})
+importance_df
+
+# most important variables increasing probability of leaving are martialstatus, educationfield_Human Resources, department_sales
+# most important variables decreasing probability of leaving are martialstatus_divorced, high job satisfaction, and educationfield_Life Sciences/environmentsatisfaction
