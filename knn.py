@@ -1,10 +1,9 @@
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score, StratifiedKFold
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
+from sklearn.metrics import confusion_matrix, classification_report
 from load_clean_visualize_data import df
 import seaborn as sns
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 
 
