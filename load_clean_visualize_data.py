@@ -68,11 +68,11 @@ cols = df.drop("attrition", axis = 1)
 
 # the problem with this is that it is not showing each point, lots of overlap and only showing the last 
 # point plotted on the graph. 
+
+'''
 for col1, col2 in combinations(cols, 2):
     fg = sns.FacetGrid(data = df, hue = "attrition")
     fg.map_dataframe(sns.scatterplot, x = col1, y = col2)
     fg.add_legend()
     plt.show()
-    
-    
-sns.pairplot(df)
+'''

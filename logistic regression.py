@@ -60,3 +60,5 @@ importance_df
 
 # most important variables increasing probability of leaving are martialstatus, educationfield_Human Resources, department_sales
 # most important variables decreasing probability of leaving are martialstatus_divorced, high job satisfaction, and educationfield_Life Sciences/environmentsatisfaction
+
+# logistic regression is also not a good algorithm due to missing potential feature interactions. 

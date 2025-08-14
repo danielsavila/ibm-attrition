@@ -46,3 +46,5 @@ conf_matrix_test = confusion_matrix(y_test, y_test_pred)
 ax_test = sns.heatmap(conf_matrix_test, annot=True, fmt="d", cmap="Blues")
 ax_test.set(xlabel="Predicted", ylabel="Label")
 plt.show()
+
+#knn doesnt seem to work because there are too many features.
