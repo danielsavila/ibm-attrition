@@ -1,11 +1,11 @@
 import numpy as np
 import pandas as pd
 import os
-from databricks import sql
-from dotenv import load_dotenv
-import seaborn as sns
-from matplotlib import pyplot as plt    
-
+from databricks import sql # type: ignore
+from dotenv import load_dotenv # type: ignore
+import seaborn as sns # type: ignore
+from matplotlib import pyplot as plt  
+from itertools import combinations  
 
 # loading in datafrom databricks
 load_dotenv()
@@ -61,3 +61,18 @@ df = df.drop(columns = ["totalworkingyears"])
 
 #checking for class imbalance
 df["attrition"].value_counts(normalize = True) #lots of imbalance, so will use class_weight='balanced' in logistic regression
+
+# creating visuals for outcomes based on each column to see if there are any patterns to discern.
+cols = df.drop("attrition", axis = 1)
+
+
+# the problem with this is that it is not showing each point, lots of overlap and only showing the last 
+# point plotted on the graph. 
+for col1, col2 in combinations(cols, 2):
+    fg = sns.FacetGrid(data = df, hue = "attrition")
+    fg.map_dataframe(sns.scatterplot, x = col1, y = col2)
+    fg.add_legend()
+    plt.show()
+    
+    
+sns.pairplot(df)
