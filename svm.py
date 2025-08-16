@@ -42,7 +42,7 @@ param_grid2 = {"kernel":["poly"],
                "coef0": np.linspace(.01, 10, 5)}
 
 gs = GridSearchCV(estimator = svc,
-                  param_grid = param_grid2,
+                  param_grid = param_grid,
                   scoring = "f1",
                   cv = skfold,
                   n_jobs = -1)
@@ -53,9 +53,17 @@ gs.best_params_
 gs.best_score_
 
 best_model = gs.best_estimator_
-y_pred = best_model.predict(x_test)
-print(confusion_matrix(y_test, y_pred))
-print(classification_report(y_test, y_pred))
+y_pred = best_model.predict(x_train)
+y_pred_test = best_model.predict(x_test)
+
+print("training report")
+print(confusion_matrix(y_train, y_pred))
+print(classification_report(y_train,y_pred))
+print("-"*50)
+
+print("test report")
+print(confusion_matrix(y_test, y_pred_test))
+print(classification_report(y_test, y_pred_test))
 
 # SVM is having trouble with the class imbalances. 
 # In every mdoel that I train, the problem seems to be that we are leaning towards predicting the majority class
