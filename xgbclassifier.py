@@ -3,12 +3,14 @@ from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearc
 from sklearn.metrics import confusion_matrix, classification_report
 import numpy as np
 import pandas as pd
+from imblearn.over_sampling import SMOTE
 import xgboost as xgb
 
 x = df.drop("attrition", axis = 1)
 y = df["attrition"]
 
 seed = 12345
+smote = SMOTE(random_state = seed, k_neighbors = 5)
 skfold = StratifiedKFold(shuffle = True, random_state= seed, n_splits = 5)
 
 x_train, x_test, y_train, y_test = train_test_split(x, 
@@ -17,6 +19,9 @@ x_train, x_test, y_train, y_test = train_test_split(x,
                                                     random_state = seed, 
                                                     stratify = y)
 
+
+#implement SMOTE algorithm to address class imbalances.
+x_train, y_train = smote.fit_resample(x_train, y_train)
 
 
 #parameters for tuning:

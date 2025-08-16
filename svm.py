@@ -13,9 +13,11 @@ seed = 12345
 
 #scaling is necessary in SVM since large magnitude models will influence distance calculations.
 scaler = StandardScaler()
-x = scaler.fit_transform(x)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size= .3, stratify = y, random_state = seed)
+
+x_train = scaler.fit_transform(x_train)
+x_test = scaler.fit_transform(x_test)
 
 skfold = StratifiedKFold(shuffle = True, random_state= seed, n_splits = 3)
 svc = SVC(class_weight = "balanced")
@@ -43,7 +45,7 @@ param_grid2 = {"kernel":["poly"],
 
 gs = GridSearchCV(estimator = svc,
                   param_grid = param_grid,
-                  scoring = "f1",
+                  scoring = "recall",
                   cv = skfold,
                   n_jobs = -1)
 
