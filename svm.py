@@ -1,7 +1,8 @@
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score, GridSearchCV
+from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn.metrics import confusion_matrix, classification_report
+from imblearn.over_sampling import SMOTE
 from load_clean_visualize_data import df
 import numpy as np
 
@@ -12,15 +13,19 @@ seed = 12345
 
 
 #scaling is necessary in SVM since large magnitude models will influence distance calculations.
+smote = SMOTE(random_state = seed)
 scaler = StandardScaler()
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size= .3, stratify = y, random_state = seed)
 
-x_train = scaler.fit_transform(x_train)
-x_test = scaler.fit_transform(x_test)
 
-skfold = StratifiedKFold(shuffle = True, random_state= seed, n_splits = 3)
-svc = SVC(class_weight = "balanced")
+#implementing SMOTE and scaler
+x_train, y_train = smote.fit_resample(x_train, y_train)
+x_train = scaler.fit_transform(x_train)
+x_test = scaler.transform(x_test)
+
+kfold = KFold(shuffle = True, random_state= seed, n_splits = 3)
+svc = SVC()
 
 # implementing stratified cross validation, and hyper paramter tuning with gridsearch
 
@@ -38,15 +43,16 @@ param_grid = [{"kernel": ["linear"],
                "gamma": ["auto"]}]
 
 
-param_grid2 = {"kernel":["poly"],
+param_grid2 = {"kernel":["rbf"],
                "C": np.logspace(-3, 3, 15),
-               "gamma": ["auto"],
-               "coef0": np.linspace(.01, 10, 5)}
+               "gamma": ["scale"],
+               #"coef0": np.linspace(.01, 10, 5)
+               }
 
 gs = GridSearchCV(estimator = svc,
-                  param_grid = param_grid,
+                  param_grid = param_grid2,
                   scoring = "recall",
-                  cv = skfold,
+                  cv = kfold,
                   n_jobs = -1)
 
 
@@ -68,4 +74,10 @@ print(confusion_matrix(y_test, y_pred_test))
 print(classification_report(y_test, y_pred_test))
 
 # SVM is having trouble with the class imbalances. 
-# In every mdoel that I train, the problem seems to be that we are leaning towards predicting the majority class
+# In every mdoel that I train, the problem seems to be that we are leaning towards 
+# predicting the majority class
+
+'''
+tried implmementing smote here as well, and across all gridsearches, found that the test set 
+was predicting only the 0 class. Therefore reverting back to smote-less algorithm
+'''
