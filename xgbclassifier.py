@@ -20,9 +20,11 @@ x_train, x_test, y_train, y_test = train_test_split(x,
                                                     stratify = y)
 
 
-#implement SMOTE algorithm to address class imbalances.
-x_train, y_train = smote.fit_resample(x_train, y_train)
 
+# implement SMOTE algorithm to address class imbalances.
+# x_train, y_train = smote.fit_resample(x_train, y_train)
+
+pos_weight = y_train.value_counts()[0]/y_train.value_counts()[1]
 
 #parameters for tuning:
 
@@ -31,16 +33,13 @@ param_grid = {"n_estimators": np.arange(1, 300, 5),
               "min_child_weight": np.arange(7, 30, 10),
               "max_delta_step": np.arange(1, 11, 10)} #using this to attempt to further stabilize learning rates
 
-#scaling to account for imbalanced classes
-scale_weight = y_train.value_counts()[0]/y_train.value_counts()[1]
-
 xgbc = xgb.XGBClassifier(objective = "binary:logistic",
                          grow_policy = "lossguide",
                          learning_rate = .1,
                          booster = "gbtree",
                          n_jobs = -1, 
                          random_state = seed,
-                         scale_pos_weight = scale_weight
+                         scale_pos_weight = pos_weight
                          )
 
 gs = GridSearchCV(estimator = xgbc, 
@@ -64,3 +63,10 @@ print("test report")
 y_pred_test = gs.predict(x_test)
 print(confusion_matrix(y_test, y_pred_test))
 print(classification_report(y_test, y_pred_test))
+
+'''
+tried implementing smote, got significantly better results on the training set for both recall and f1
+than if i just used stratified kfold. But on the test set, found that I got significantly worse
+results with smote, indicating that the synthetic data/oversampling technique was detrimental
+to performance. Therefore reverting back to stratified kfold 
+'''
