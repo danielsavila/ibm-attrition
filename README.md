@@ -63,7 +63,10 @@ For simplicity, we assume a company of employee size 1000, an average annual att
 
 Precision for attrition cases in the test set was 24%, which means that of the people we classified as leaving, 24% of them actually left. Since 100 people leave every year, this implies that our model would predict that 416 people would be tagged as potentially leaving. 
 
-As the cost of attrition is $5.2M (100 employees annually x $52,000 per employee), if the firm gave each of the 416 people who was tagged as potentially leaving no more than a **$12,500 retention bonus, regardless of if the individual stayed**, the firm would break even on their recoverable annual attrition costs by implementing this model.
+As the cost of attrition is $5.2M (100 employees annually x $52,000 per employee), if the firm gave each of the 416 people who was tagged as potentially leaving no more than a **$12,500 retention bonus, regardless of if the individual stayed**, the firm would break even on their recoverable* annual attrition costs by implementing this model.
+
+
+* We say "recoverable" because recall is 80%, which means 20% of those that did leave were not captured by our model in the first place.
 
 <!-- CONTACT -->
 ## Contact
