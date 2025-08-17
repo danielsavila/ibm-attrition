@@ -11,7 +11,7 @@ This project takes Kaggle data (https://www.kaggle.com/datasets/rohitsahoo/emplo
 The *XGBoost Classifier* performed the best of the 5 models evaluated, generating a 80% recall rate in the test set for positive attrition cases. In otherwords, of the people who actually left the firm, we captured 80% of them with this model. 
 
 ## Business Case, Using XGBoost Outcomes
-Last I checked, IBM employed 293,400 employees. For simplicity, we assume a company of employee size 300,000, an average annual attrition rate of 5%, the cost of replacing a full-time employee at $52,000, and the success rate of our retention program at 100%.
+As of August 2025, IBM employed 293,400 employees. For simplicity, we assume a company of employee size 300,000, an average annual attrition rate of 5%, the cost of replacing a full-time employee at $52,000, and the success rate of our retention program at 100%.
 
 Precision for attrition cases in the test set was 24%, which means that of the people we classified as leaving, 24% of them actually left. Since 15,000 people leave every year, this implies that our model would predict that 62,500 people would be tagged as potentially leaving. 
 
