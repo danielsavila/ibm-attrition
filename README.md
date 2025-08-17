@@ -1,7 +1,7 @@
 <!-- ABOUT THIS HR ATTRITION PROJECT -->
 # About The IBM-Attrition Project
 
-This project was born out of an interest in analyzing and producing an attrition classifier for human analytics. While at the University of Chicago, I worked with hospital data that indicated significant quality of life improvements could be made by reducing work-related burnout for doctors, in particular hospitalists. Reducing burnout had potential to lead to better quality of life outcomes for doctors, better outcomes healthcare for patients, better quality of life for patients while hospitalized, and improvements toward hospital profitability.
+This project was born out of an interest in analyzing and producing an attrition classifier for human analytics. While at the University of Chicago, I worked with hospital data that indicated significant quality of life improvements could be made by reducing work-related burnout for doctors, in particular hospitalists. Reducing burnout had potential to lead to better quality of life outcomes for doctors, better healthcare outcomes for patients, better quality of life for patients while hospitalized, and improvements toward hospital profitability.
 
 This project takes Kaggle data (https://www.kaggle.com/datasets/rohitsahoo/employee) regarding employee attrition at IBM and attempts to fit a model that optimizes attrition predictions using recall as the primary evaluation metric over a given feature set. 
 
