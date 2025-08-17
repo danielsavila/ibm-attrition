@@ -64,6 +64,7 @@ and the following data science techniques...
 --  Model Validation/Evaluation
 * Cross Validation
 * Confusion Matrices
+* ROC/AUC Curves
 * Hyperparameter Tuning (GridSearch)
 * Evaluation Metrics (recall, f-1)
 * Feature Importance
