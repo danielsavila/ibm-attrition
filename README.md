@@ -23,7 +23,7 @@ This repo contains 5 .py files that contain different models fit to the data. Th
 * K-Nearest Neighbors
 * Linear/Quadratic Discriminant Analysis
 * Logistic Regression
-* Support Vector Machines
+* Support Vector Machines (linear, polynomial, radial kernels)
 * XGBoostClassifier
 
 
@@ -49,6 +49,7 @@ and the following data science techniques...
 --  Model Validation/Evaluation
 * Cross Validation
 * Confusion Matrices
+* Hyperparameter Tuning (GridSearch)
 * Evaluation Metrics (recall, f-1)
 * Feature Importance
 
