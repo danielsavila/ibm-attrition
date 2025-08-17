@@ -5,7 +5,22 @@ This project was born out of an interest in analyzing and producing an attrition
 
 This project takes Kaggle data (https://www.kaggle.com/datasets/rohitsahoo/employee) regarding employee attrition at IBM and attempts to fit a model that optimizes attrition predictions using recall as the primary evaluation metric over a given feature set. 
 
-## Why is predicting attrition important:
+
+<!-- OUTCOMES -->
+## Best Model
+The *XGBoost Classifier* performed the best of the 5 models evaluated, generating a 80% recall rate in the test set for positive attrition cases. In otherwords, of the people who actually left the firm, we captured 80% of them with this model. 
+
+## Business Case, Using XGBoost Outcomes
+For simplicity, we assume a company of employee size 1000, an average annual attrition rate of 10%, the cost of replacing a full-time employee at $52,000, and the success rate of our retention program at 100%.
+
+Precision for attrition cases in the test set was 24%, which means that of the people we classified as leaving, 24% of them actually left. Since 100 people leave every year, this implies that our model would predict that 416 people would be tagged as potentially leaving. 
+
+As the cost of attrition is $5.2M (100 employees annually x $52,000 per employee), if the firm gave each of the 416 people who was tagged as potentially leaving no more than a **$12,500 retention bonus, regardless of if the individual stayed**, the firm would break even on their recoverable* annual attrition costs by implementing this model.
+
+We say "recoverable" because recall is 80%, which means 20% of those that did leave were not captured by our model in the first place.
+
+
+# Why is predicting attrition important:
 * McKinsey estimates that the average cost of replacing a full time employee is $52,000, which incentivizes firms to get the hiring process right the first time. (https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/increasing-your-return-on-talent-the-moves-and-metrics-that-matter)
 * While AI has eliminated numerous entry-level job openings, the opportunity cost of hiring the WRONG junior talent has increased as recruiters now need to filter through an exponentially increasing number of applicants.
 * While the supply of inexperineced junior talent baloons, competition for experienced senior talent has increased as well, leading to higher pay packages, increased hiring timelines, and the potential for poaching from other firms.
@@ -52,21 +67,6 @@ and the following data science techniques...
 * Hyperparameter Tuning (GridSearch)
 * Evaluation Metrics (recall, f-1)
 * Feature Importance
-
-
-<!-- OUTCOMES -->
-## Best Model
-The *XGBoost Classifier* performed the best of the 5 models evaluated, generating a 80% recall rate in the test set for positive attrition cases. In otherwords, of the people who actually left the firm, we captured 80% of them with this model. 
-
-## Business Case, Using XGBoost Outcomes
-For simplicity, we assume a company of employee size 1000, an average annual attrition rate of 10%, the cost of replacing a full-time employee at $52,000, and the success rate of our retention program at 100%.
-
-Precision for attrition cases in the test set was 24%, which means that of the people we classified as leaving, 24% of them actually left. Since 100 people leave every year, this implies that our model would predict that 416 people would be tagged as potentially leaving. 
-
-As the cost of attrition is $5.2M (100 employees annually x $52,000 per employee), if the firm gave each of the 416 people who was tagged as potentially leaving no more than a **$12,500 retention bonus, regardless of if the individual stayed**, the firm would break even on their recoverable* annual attrition costs by implementing this model.
-
-
-* We say "recoverable" because recall is 80%, which means 20% of those that did leave were not captured by our model in the first place.
 
 <!-- CONTACT -->
 ## Contact
