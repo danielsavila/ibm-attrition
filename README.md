@@ -16,7 +16,7 @@ If there was...
 
 there exists a break even point where the total cost of implementation and the total net savings are equal. Therefore, any implementation with total cost below that threshold would contribute net savings for the company. 
 
-### i.e. if we can create a targeted retention program that, on average, costs less than losing an employee, we can save the firm some money.
+### i.e. if we can create a targeted retention program that, on average, costs less than losing an employee, we can save the firm some money, save years of intangible experience, and potentially maintain/improve company morale.
 
 ## About this repo:
 This repo contains 5 .py files that contain different models fit to the data. The models are the following...
