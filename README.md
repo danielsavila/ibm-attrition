@@ -1,5 +1,5 @@
 <!-- ABOUT THIS HR ATTRITION PROJECT -->
-# About The IBM-Attrition Project
+# About This HR Attrition Project
 
 This project was born out of an interest in analyzing and producing an attrition classifier for human analytics. While at the University of Chicago, I worked with hospital data that indicated significant quality of life improvements could be made by reducing work-related burnout for doctors, in particular hospitalists. Reducing burnout had potential to lead to better quality of life outcomes for doctors, better healthcare outcomes for patients, better quality of life for patients while hospitalized, and improvements in hospital profitability.
 
