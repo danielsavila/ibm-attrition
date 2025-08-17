@@ -54,6 +54,17 @@ and the following data science techniques...
 * Feature Importance
 
 
+<!-- OUTCOMES -->
+## Best Model
+The *XGBoost Classifier* performed the best of the 5 models evaluated, generating a 80% recall rate in the test set for positive attrition cases. In otherwords, of the people who actually left the firm, we captured 80% of them with this model. 
+
+## Business Case, Using XGBoost Outcomes
+We assume a company of employee size 1000, an average annual attrition rate of 10%, the cost of replacing a full-time employee at $52,000, and the success rate of our retention program at 100%.
+
+Precision for attrition cases in the test set was 24%, which means that of the people we classified as leaving, 24% of them actually left. Since 100 people leave every year, this implies that our model would predict that 416 people would be tagged as potentially leaving. 
+
+As the cost of attrition is $5.2M (100 employees annually x $52,000 per employee), if the firm gave each of the 416 people who was tagged as potentially leaving no more than a **$12,500 retention bonus, regardless of if the individual stayed**, the firm would break even on their annual attrition costs.
+
 <!-- CONTACT -->
 ## Contact
 
